@@ -14,8 +14,12 @@ class ItemController extends Controller
      */
     public function index()
     {
-        //
-    }
+        $data['items'] = Item::all();
+        $data['row'] = $data['items']->count()/5;
+        $data['page'] = $data['items']->count()/10;
+
+    return view('home', compact('data'));
+}
 
     /**
      * Show the form for creating a new resource.
@@ -44,9 +48,10 @@ class ItemController extends Controller
      * @param  \App\Models\Item  $item
      * @return \Illuminate\Http\Response
      */
-    public function show(Item $item)
+    public function show($id)
     {
-        //
+        $item = Item::find($id);
+        return view('detail', compact('item'));
     }
 
     /**

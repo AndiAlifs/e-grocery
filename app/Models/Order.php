@@ -23,4 +23,14 @@ class Order extends Model
     {
         return $this->hasMany(Item::class, 'item_id', 'item_id');
     }
+
+    /**
+     * Get the user that owns the Order
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'account_id', 'account_id');
+    }
 }
