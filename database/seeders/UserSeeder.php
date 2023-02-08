@@ -20,7 +20,7 @@ class UserSeeder extends Seeder
             'first_name' => 'Admin',
             'last_name' => 'Super',
             'email' => 'admin@admin.com',
-            'display_picture_link' => 'https://visualpharm.com/assets/381/Admin-595b40b65ba036ed117d3b23.svg',
+            'display_picture_link' => 'images/profile_pic/admin.jpg',
             'password' => bcrypt('admin123')
         ];
         User::create($data);
@@ -31,7 +31,7 @@ class UserSeeder extends Seeder
             'first_name' => 'User',
             'last_name' => 'Normal',
             'email' => 'user@user.com',
-            'display_picture_link' => 'https://visualpharm.com/assets/381/Admin-595b40b65ba036ed117d3b23.svg',
+            'display_picture_link' => 'images/profile_pic/user.png',
             'password' => bcrypt('user123')
         ];
         User::create($data);
