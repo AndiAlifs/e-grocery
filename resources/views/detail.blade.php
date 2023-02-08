@@ -15,7 +15,7 @@
                         <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laudantium in unde vel officia nobis voluptatum, suscipit quaerat, repudiandae temporibus voluptatem eum voluptas voluptatibus. In aperiam voluptate eius ipsa asperiores explicabo!</p>
                         <p>Notes : Limited Item Sangat Limited</p>
                         <div class="d-flex justify-content-end">
-                            <a href="#" class="float-right btn btn-warning">BUY</a>
+                            <a href="{{route('add_to_cart',$item->item_id)}}" class="float-right btn btn-warning">   BUY  </a>
                         </div>
                     </div>
                 </div>

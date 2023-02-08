@@ -54,6 +54,54 @@ class ItemController extends Controller
         return view('detail', compact('item'));
     }
 
+    public function add_to_cart($id)
+    {   
+        
+        $nowCart = session()->get('cart');
+
+        $found = false;
+        if ($nowCart) {
+            foreach ($nowCart as $key => $value) {
+                if ($value == $id) {
+                    $found = true;
+                }
+            }
+        }
+
+        if (!$found) {
+            $nowCart[] = $id;
+        }
+        session()->put('cart', $nowCart);
+
+        return redirect()->route('cart');
+    }
+
+    public function show_cart()
+    {
+        $cart = session()->get('cart');
+        $data['total'] = 0;
+        foreach ($cart as $value) {
+            $item = Item::find($value);
+            $data['items'][] = $item;
+            $data['total'] += $item->price;
+        }
+        return view('cart', compact('data'));
+    }
+
+    public function remove_from_cart($id)
+    {
+        $nowCart = session()->get('cart');
+        $newCart = [];
+        foreach ($nowCart as $value) {
+            if ($value != $id) {
+                $newCart[] = $value;
+            }
+        }
+        session()->put('cart', $newCart);
+
+        return redirect()->route('cart');
+    }
+
     /**
      * Show the form for editing the specified resource.
      *

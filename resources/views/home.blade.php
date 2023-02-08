@@ -15,6 +15,9 @@
                                     <a href="{{route('item_detail',$data['items'][$k-1]->item_id)}}">Detail</a>
                                 </div>
                             @endfor
+                            @php
+                                $j+=5;
+                            @endphp
                         </div>
                     @endfor
                 </div>
