@@ -23,7 +23,17 @@ class UserSeeder extends Seeder
             'display_picture_link' => 'https://visualpharm.com/assets/381/Admin-595b40b65ba036ed117d3b23.svg',
             'password' => bcrypt('admin123')
         ];
+        User::create($data);
 
+        $data = [
+            'role_id' => 2,
+            'gender_id' => 2,
+            'first_name' => 'User',
+            'last_name' => 'Normal',
+            'email' => 'user@user.com',
+            'display_picture_link' => 'https://visualpharm.com/assets/381/Admin-595b40b65ba036ed117d3b23.svg',
+            'password' => bcrypt('user123')
+        ];
         User::create($data);
     }
 }

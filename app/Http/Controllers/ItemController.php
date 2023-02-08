@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Item;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ItemController extends Controller
 {
@@ -15,11 +16,11 @@ class ItemController extends Controller
     public function index()
     {
         $data['items'] = Item::all();
-        $data['row'] = $data['items']->count()/5;
-        $data['page'] = $data['items']->count()/10;
+        $data['row'] = $data['items']->count() / 5;
+        $data['page'] = $data['items']->count() / 10;
 
-    return view('home', compact('data'));
-}
+        return view('home', compact('data'));
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -55,8 +56,8 @@ class ItemController extends Controller
     }
 
     public function add_to_cart($id)
-    {   
-        
+    {
+
         $nowCart = session()->get('cart');
 
         $found = false;
@@ -80,10 +81,14 @@ class ItemController extends Controller
     {
         $cart = session()->get('cart');
         $data['total'] = 0;
-        foreach ($cart as $value) {
-            $item = Item::find($value);
-            $data['items'][] = $item;
-            $data['total'] += $item->price;
+        $data['items'] = [];
+
+        if ($cart) {
+            foreach ($cart as $value) {
+                $item = Item::find($value);
+                $data['items'][] = $item;
+                $data['total'] += $item->price;
+            }
         }
         return view('cart', compact('data'));
     }
